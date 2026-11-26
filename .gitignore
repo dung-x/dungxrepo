@@ -1,4 +1,5 @@
 *.deb
+!debs/*.deb
 !.gitignore
 .debs/
 .DS_Store
