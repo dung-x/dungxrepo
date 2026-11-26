@@ -39,7 +39,7 @@ jobs:
             if [ -n "$ARTIFACT_ID" ]; then
               gh api -H "Accept: application/vnd.github+json" \
                 "repos/dung-x/Wifi-bruter/actions/artifacts/$ARTIFACT_ID/zip" \
-                -o "artifact-$variant.zip"
+                > "artifact-$variant.zip"
               unzip -o "artifact-$variant.zip" -d "debs/$variant"
               rm -f "artifact-$variant.zip"
             fi
