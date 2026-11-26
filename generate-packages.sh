@@ -59,14 +59,14 @@ bzip2 -k -f "$PACKAGES_FILE" 2>/dev/null || true
 # Generate Release file
 date=$(date -u "+%a, %d %b %Y %H:%M:%S %Z" 2>/dev/null || date -u)
 cat > "$RELEASE_FILE" <<EOF
-Origin: WiFiBruter Repo
-Label: WiFiBruter
+Origin: dungxrepo
+Label: dungxrepo
 Suite: stable
 Version: 1.0
 Codename: ios
 Architectures: iphoneos-arm64
 Components: main
-Description: Sileo/Cydia package repository for WiFiBruter
+Description: Sileo/Cydia package repository for dungxrepo
 Acquire-By-Hash: yes
 Date: $date
 EOF

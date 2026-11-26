@@ -1,14 +1,14 @@
-# WiFiBruter Sileo / Cydia Repository
+# dungxrepo - Sileo / Cydia Repository
 
 Add this repo to Sileo or Cydia:
 
 ```
-https://dung-x.github.io/Wifi-bruter-repo/
+https://dung-x.github.io/dungxrepo/
 ```
 
 ## Packages
 
-- **com.kilo.wifibruter** — WiFiBruter (iOS 12 & iOS 15 compatible)
+- **dungx.wifibruter** — WiFiBruter (iOS 12 & iOS 15 compatible)
 
 ## How packages are synced
 
@@ -19,5 +19,5 @@ The `build.yml` workflow in [`dung-x/Wifi-bruter`](https://github.com/dung-x/Wif
 Download the latest `.deb` from the [GitHub Actions artifacts](https://github.com/dung-x/Wifi-bruter/actions) of the `Wifi-bruter` repo and install with:
 
 ```bash
-dpkg -i com.kilo.wifibruter_*.deb
+dpkg -i dungx.wifibruter_*.deb
 ```
