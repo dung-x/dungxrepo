@@ -1,13 +1,42 @@
-Package: dungx.wifibruter
-Name: WiFiBruter
-Version: 1.0-1
-Architecture: iphoneos-arm64
-Maintainer: dungx
-Depends: mobilesubstrate, preferenceloader
-Section: Tweaks
-Description: Automatically attempts WiFi passcodes from a wordlist on jailbroken iOS. Configurable from the Settings app. Primarily targets iOS 12 and iOS 15.
+Package:  dungx.wifibruter-roothide
+Name:  WiFiBruter (Roothide)
+Version:  1.0-1-1+debug
+Architecture:  iphoneos-arm64
+Maintainer:  dungx
+Depends:  mobilesubstrate, preferenceloader
+Section:  Tweaks
+Description:  Automatically attempts WiFi passcodes from a wordlist on jailbroken iOS. Roothide variant. Configurable from the Settings app. Primarily targets iOS 12 and iOS 15. For authorized security testing only.
+Filename: debs/dungx.wifibruter-roothide_1.0-1_iphoneos-arm64.deb
+Size: 11920
+MD5sum: 0b00f1cbb8eb2e1f913d304d0dba5e84
+SHA1: 679141cd4d0db59f9caaa7b469dc9479f87e6720
+SHA256: bf8cb40770d6c6817c0f9ec7c2d8e2052779c99a1cf7522b01cd98f60188b78e
+
+Package:  dungx.wifibruter-rootless
+Name:  WiFiBruter (Rootless)
+Version:  1.0-1-1+debug
+Architecture:  iphoneos-arm64
+Maintainer:  dungx
+Depends:  mobilesubstrate, preferenceloader
+Section:  Tweaks
+Description:  Automatically attempts WiFi passcodes from a wordlist on jailbroken iOS. Rootless variant. Configurable from the Settings app. Primarily targets iOS 12 and iOS 15. For authorized security testing only.
+Filename: debs/dungx.wifibruter-rootless_1.0-1_iphoneos-arm64.deb
+Size: 11918
+MD5sum: ba9596135568ff3bc317aa6f0de7612f
+SHA1: bb6a0dc486d5959f08fcd70af107bed46cd4ad6b
+SHA256: c60187a5d5368bc467acd85ac30847aab62a70cb8f72875b3cb64eb5790c0a90
+
+Package:  dungx.wifibruter
+Name:  WiFiBruter
+Version:  1.0-1-1+debug
+Architecture:  iphoneos-arm64
+Maintainer:  dungx
+Depends:  mobilesubstrate, preferenceloader
+Section:  Tweaks
+Description:  Automatically attempts WiFi passcodes from a wordlist on jailbroken iOS. Configurable from the Settings app. Primarily targets iOS 12 and iOS 15. For authorized security testing only.
 Filename: debs/dungx.wifibruter_1.0-1_iphoneos-arm64.deb
-Size: 0
-MD5sum: 00000000000000000000000000000000
-SHA1: 0000000000000000000000000000000000000000
-SHA256: 0000000000000000000000000000000000000000000000000000000000000000
+Size: 11862
+MD5sum: 92af9aa9a9978613f7250e35e7d6ec92
+SHA1: f3ba0726e8ebf782fd94cb93703d0ff9c6c64470
+SHA256: d3ad5c2a895d4f2ab2d3e7ffafff86c487575dc0ea422fe5ae5b183a49c1bf70
+
