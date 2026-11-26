@@ -28,6 +28,8 @@ jobs:
 
       - name: Get build artifacts from main repo
         id: get_artifacts
+        env:
+          GH_TOKEN: ${{ secrets.REPO_PAT }}
         run: |
           RUN_ID=$(gh api "repos/dung-x/Wifi-bruter/actions/runs?status=success&per_page=1" --jq '.workflow_runs[0].id')
           echo "run_id=$RUN_ID" >> $GITHUB_OUTPUT
@@ -58,6 +60,8 @@ jobs:
           ./generate-packages.sh
 
       - name: Commit and push changes
+        env:
+          GH_TOKEN: ${{ secrets.REPO_PAT }}
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
