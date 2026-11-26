@@ -2,7 +2,7 @@ Package: dungx.wifibruter
 Name: WiFiBruter
 Version: 1.0-1
 Architecture: iphoneos-arm64
-Maintainer: Kilo <kilo@local>
+Maintainer: dungx
 Depends: mobilesubstrate, preferenceloader
 Section: Tweaks
 Description: Automatically attempts WiFi passcodes from a wordlist on jailbroken iOS. Configurable from the Settings app. Primarily targets iOS 12 and iOS 15.
