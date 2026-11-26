@@ -56,7 +56,34 @@ done
 gzip -k -f "$PACKAGES_FILE"
 bzip2 -k -f "$PACKAGES_FILE" 2>/dev/null || true
 
-# Generate Release file
+# Compute checksums for Release file
+get_checksums() {
+    local file="$1"
+    local size=$(stat -c%s "$file" 2>/dev/null || stat -f%z "$file" 2>/dev/null)
+    local md5=$(md5sum "$file" 2>/dev/null | cut -d' ' -f1 || md5 -q "$file" 2>/dev/null)
+    local sha1=$(sha1sum "$file" 2>/dev/null | cut -d' ' -f1 || shasum -a 1 "$file" 2>/dev/null | cut -d' ' -f1)
+    local sha256=$(sha256sum "$file" 2>/dev/null | cut -d' ' -f1 || shasum -a 256 "$file" 2>/dev/null | cut -d' ' -f1)
+    echo "$md5 $size $file"
+    echo "$sha1 $size $file"
+    echo "$sha256 $size $file"
+}
+
+packages_md5=$(get_checksums "$PACKAGES_FILE" | head -1 | cut -d' ' -f1)
+packages_size=$(stat -c%s "$PACKAGES_FILE" 2>/dev/null || stat -f%z "$PACKAGES_FILE" 2>/dev/null)
+packages_gz_md5=$(md5sum "$PACKAGES_FILE.gz" 2>/dev/null | cut -d' ' -f1 || md5 -q "$PACKAGES_FILE.gz" 2>/dev/null)
+packages_gz_size=$(stat -c%s "$PACKAGES_FILE.gz" 2>/dev/null || stat -f%z "$PACKAGES_FILE.gz" 2>/dev/null)
+packages_bz2_md5=$(md5sum "$PACKAGES_FILE.bz2" 2>/dev/null | cut -d' ' -f1 || md5 -q "$PACKAGES_FILE.bz2" 2>/dev/null)
+packages_bz2_size=$(stat -c%s "$PACKAGES_FILE.bz2" 2>/dev/null || stat -f%z "$PACKAGES_FILE.bz2" 2>/dev/null)
+
+packages_sha1=$(sha1sum "$PACKAGES_FILE" 2>/dev/null | cut -d' ' -f1 || shasum -a 1 "$PACKAGES_FILE" 2>/dev/null | cut -d' ' -f1)
+packages_gz_sha1=$(sha1sum "$PACKAGES_FILE.gz" 2>/dev/null | cut -d' ' -f1 || shasum -a 1 "$PACKAGES_FILE.gz" 2>/dev/null | cut -d' ' -f1)
+packages_bz2_sha1=$(sha1sum "$PACKAGES_FILE.bz2" 2>/dev/null | cut -d' ' -f1 || shasum -a 1 "$PACKAGES_FILE.bz2" 2>/dev/null | cut -d' ' -f1)
+
+packages_sha256=$(sha256sum "$PACKAGES_FILE" 2>/dev/null | cut -d' ' -f1 || shasum -a 256 "$PACKAGES_FILE" 2>/dev/null | cut -d' ' -f1)
+packages_gz_sha256=$(sha256sum "$PACKAGES_FILE.gz" 2>/dev/null | cut -d' ' -f1 || shasum -a 256 "$PACKAGES_FILE.gz" 2>/dev/null | cut -d' ' -f1)
+packages_bz2_sha256=$(sha256sum "$PACKAGES_FILE.bz2" 2>/dev/null | cut -d' ' -f1 || shasum -a 256 "$PACKAGES_FILE.bz2" 2>/dev/null | cut -d' ' -f1)
+
+# Generate Release file with checksums
 date=$(date -u "+%a, %d %b %Y %H:%M:%S %Z" 2>/dev/null || date -u)
 cat > "$RELEASE_FILE" <<EOF
 Origin: dungxrepo
@@ -69,6 +96,18 @@ Components: main
 Description: Sileo/Cydia package repository for dungxrepo
 Acquire-By-Hash: yes
 Date: $date
+MD5Sum:
+ $packages_md5 $packages_size Packages
+ $packages_gz_md5 $packages_gz_size Packages.gz
+ $packages_bz2_md5 $packages_bz2_size Packages.bz2
+SHA1:
+ $packages_sha1 $packages_size Packages
+ $packages_gz_sha1 $packages_gz_size Packages.gz
+ $packages_bz2_sha1 $packages_bz2_size Packages.bz2
+SHA256:
+ $packages_sha256 $packages_size Packages
+ $packages_gz_sha256 $packages_gz_size Packages.gz
+ $packages_bz2_sha256 $packages_bz2_size Packages.bz2
 EOF
 
 echo "Packages index generated at $PACKAGES_FILE"
