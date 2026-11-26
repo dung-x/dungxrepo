@@ -2,7 +2,7 @@ name: Sync Sileo Repo
 
 on:
   workflow_run:
-    workflows: ["Build iOS Tweak (Rootful, Rootless, Roothide)"]
+    workflows: ["Build iOS Tweak"]
     types:
       - completed
   workflow_dispatch:
@@ -28,33 +28,26 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -y dpkg-dev gzip bzip2
 
-      - name: Get build artifacts from main repo
-        id: get_artifacts
+      - name: Get build artifact from main repo
+        id: get_artifact
         env:
-          GH_TOKEN: ${{ secrets.REPO_PAT }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           RUN_ID=$(gh api "repos/dung-x/Wifi-bruter/actions/runs?status=success&per_page=1" --jq '.workflow_runs[0].id')
           echo "run_id=$RUN_ID" >> $GITHUB_OUTPUT
-          mkdir -p debs
-          for variant in rootful rootless roothide; do
-            ARTIFACT_ID=$(gh api "repos/dung-x/Wifi-bruter/actions/runs/$RUN_ID/artifacts" --jq ".artifacts[] | select(.name == \"wifibruter-deb-$variant\") | .id")
-            if [ -n "$ARTIFACT_ID" ]; then
-              gh api -H "Accept: application/vnd.github+json" \
-                "repos/dung-x/Wifi-bruter/actions/artifacts/$ARTIFACT_ID/zip" \
-                > "artifact-$variant.zip"
-              unzip -o "artifact-$variant.zip" -d "debs/$variant"
-              rm -f "artifact-$variant.zip"
-            fi
-          done
+          ARTIFACT_ID=$(gh api "repos/dung-x/Wifi-bruter/actions/runs/$RUN_ID/artifacts" --jq '.artifacts[] | select(.name == "wifibruter-deb") | .id')
+          if [ -n "$ARTIFACT_ID" ]; then
+            gh api -H "Accept: application/vnd.github+json" \
+              "repos/dung-x/Wifi-bruter/actions/artifacts/$ARTIFACT_ID/zip" \
+              > artifact.zip
+            unzip -o artifact.zip
+            rm -f artifact.zip
+          fi
 
       - name: Flatten debs into debs/
         run: |
-          for variant in rootful rootless roothide; do
-            if [ -d "debs/$variant" ]; then
-              find "debs/$variant" -name "*.deb" -exec mv {} debs/ \;
-              rmdir "debs/$variant" 2>/dev/null || true
-            fi
-          done
+          mkdir -p debs
+          find . -name "*.deb" -not -path "./debs/*" -exec mv {} debs/ \; 2>/dev/null || true
 
       - name: Generate Packages index
         run: |
@@ -66,5 +59,5 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add Packages Packages.gz Packages.bz2 Release debs/
-          git commit -m "Sync packages from latest build (run ${{ steps.get_artifacts.outputs.run_id }})" || echo "No changes to commit"
+          git commit -m "Sync packages from latest build (run ${{ steps.get_artifact.outputs.run_id }})" || echo "No changes to commit"
           git push
