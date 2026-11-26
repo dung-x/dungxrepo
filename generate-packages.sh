@@ -28,7 +28,7 @@ for deb in "$DEBS_DIR"/*.deb; do
     package=$(get_field "Package")
     name=$(get_field "Name")
     version=$(get_field "Version")
-    arch=$(get_field "Architecture")
+    arch="iphoneos-arm"
     maintainer=$(get_field "Maintainer")
     depends=$(get_field "Depends")
     section=$(get_field "Section")
@@ -91,7 +91,7 @@ Label: dungxrepo
 Suite: stable
 Version: 1.0
 Codename: ios
-Architectures: iphoneos-arm64
+Architectures: iphoneos-arm
 Components: main
 Description: Sileo/Cydia package repository for dungxrepo
 Date: $date
