@@ -1,0 +1,5 @@
+*.deb
+!.gitignore
+.debs/
+.DS_Store
+.vscode/

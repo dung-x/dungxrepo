@@ -1,0 +1,13 @@
+Package: com.kilo.wifibruter
+Name: WiFiBruter
+Version: 1.0-1
+Architecture: iphoneos-arm64
+Maintainer: Kilo <kilo@local>
+Depends: mobilesubstrate, preferenceloader
+Section: Tweaks
+Description: Automatically attempts WiFi passcodes from a wordlist on jailbroken iOS. Configurable from the Settings app. Primarily targets iOS 12 and iOS 15.
+Filename: debs/com.kilo.wifibruter_1.0-1_iphoneos-arm64.deb
+Size: 0
+MD5sum: 00000000000000000000000000000000
+SHA1: 0000000000000000000000000000000000000000
+SHA256: 0000000000000000000000000000000000000000000000000000000000000000
