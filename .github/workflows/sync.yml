@@ -39,7 +39,7 @@ jobs:
                 "repos/dung-x/Wifi-bruter/actions/artifacts/$ARTIFACT_ID/zip" \
                 > artifact-$variant.zip
               unzip -o artifact-$variant.zip -d debs_tmp/
-              mv debs_tmp/debs/*.deb debs/ 2>/dev/null || mv debs_tmp/*.deb debs/ 2>/dev/null || true
+              mv debs_tmp/*.deb debs/ 2>/dev/null || true
               rm -rf debs_tmp artifact-$variant.zip
             fi
           done
@@ -53,6 +53,6 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add Packages Packages.gz Packages.bz2 Release debs/
+          git add -A
           git commit -m "Sync packages from latest build (run ${{ steps.get_artifact.outputs.run_id }})" || echo "No changes to commit"
           git push
