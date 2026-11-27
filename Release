@@ -6,16 +6,16 @@ Codename: ios
 Architectures: iphoneos-arm
 Components: main
 Description: Sileo/Cydia package repository for dungxrepo
-Date: Fri, 27 Nov 2026 06:39:59 UTC
+Date: Fri, 27 Nov 2026 06:58:20 UTC
 MD5Sum:
- 0f8e90b381aed6596398b273ab9224d0 1222 Packages
- 0fc0477352dfc11afaf1c4f94576f391 555 Packages.gz
- ea52b624bba2a0f4f970ea60709ca2e5 656 Packages.bz2
+ 5f9ce020c96806e88ea5733a1b2d8883 1795 Packages
+ ac92a59ddac41a5dc0f68f2acbde98e8 656 Packages.gz
+ f01fe44a3e33b9f80e326956f1466e2f 794 Packages.bz2
 SHA1:
- e18f731ecf7bb440c72c3fb42c08d0262dc421ea 1222 Packages
- 00b4ee41ca24615499be2a8cb01d30207c53cdfe 555 Packages.gz
- d995443579b1f7e0d52d0f8c85b4105271002a0d 656 Packages.bz2
+ 3d6a1fc7d7a3bcf7548713adec28fc376b3d8f18 1795 Packages
+ d5ec54868bedab93202cd21c3f79508d41094036 656 Packages.gz
+ 913cc61e1d9d23bcd0bbc4757c5f8ba73597aa38 794 Packages.bz2
 SHA256:
- 726e1c9806a4b2814c7f46eaae7acc26555843d8c74c3235e39827f32221ef4e 1222 Packages
- 2797f3749cb4565062108c425e5d46f8838704fce9a2317fd616e345108fb6f1 555 Packages.gz
- 6cfc3651b38396909ba4af1c8f6b8df5362897a964831e7eeba9d3595866ec85 656 Packages.bz2
+ b7470b41a85a35bafa807e745fb3efef9e8bdff9a603a3ca78aaea3a03c18f50 1795 Packages
+ 5f1900c68841076e6e7c6e4c15353bd1f2057f44b5a21e24cabe4c2856a744cc 656 Packages.gz
+ 34ae97d0218a375bc0e9d74d67f8fd499a0763f580299ccced2ae40927105aa7 794 Packages.bz2
