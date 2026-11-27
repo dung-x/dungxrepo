@@ -1,8 +1,10 @@
 name: Sync Sileo Repo
 
 on:
-  release:
-    types: [published]
+  workflow_run:
+    workflows: ["Build iOS Tweak"]
+    types:
+      - completed
   workflow_dispatch:
   schedule:
     - cron: "0 0 * * *"
@@ -22,12 +24,23 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -y dpkg-dev gzip bzip2
 
-      - name: Download deb from release
+      - name: Download debs from release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           rm -f debs/*.deb
-          gh release download -R dung-x/Wifi-bruter --pattern '*.deb' --dir debs --clobber
+          RUN_ID=$(gh api "repos/dung-x/Wifi-bruter/actions/runs?status=success&per_page=1" --jq '.workflow_runs[0].id')
+          echo "run_id=$RUN_ID" >> $GITHUB_OUTPUT
+          for variant in rootful rootless roothide; do
+            ARTIFACT_ID=$(gh api "repos/dung-x/Wifi-bruter/actions/runs/$RUN_ID/artifacts" --jq ".artifacts[] | select(.name == \"wifibruter-deb-$variant\") | .id")
+            if [ -n "$ARTIFACT_ID" ]; then
+              gh api -H "Accept: application/vnd.github+json" \
+                "repos/dung-x/Wifi-bruter/actions/artifacts/$ARTIFACT_ID/zip" \
+                > artifact-$variant.zip
+              unzip -o artifact-$variant.zip -d debs/
+              rm -f artifact-$variant.zip
+            fi
+          done
 
       - name: Generate Packages index
         run: |
@@ -39,5 +52,5 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add Packages Packages.gz Packages.bz2 Release debs/
-          git commit -m "Sync packages from latest release" || echo "No changes to commit"
+          git commit -m "Sync packages from latest build (run ${{ steps.get_artifact.outputs.run_id }})" || echo "No changes to commit"
           git push
