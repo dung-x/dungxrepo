@@ -26,7 +26,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release download -R dung-x/Wifi-bruter --pattern '*.deb' --dir debs
+          gh release download -R dung-x/Wifi-bruter --pattern '*.deb' --dir debs --clobber
 
       - name: Generate Packages index
         run: |
