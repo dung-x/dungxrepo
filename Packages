@@ -6,11 +6,11 @@ Maintainer:  dungx
 Depends:  mobilesubstrate, preferenceloader
 Section:  Tweaks
 Description:  Automatically attempts WiFi passcodes from a wordlist on jailbroken iOS. Configurable from the Settings app. Primarily targets iOS 12 and iOS 15. For authorized security testing only.
-Filename: debs/dungx.wifibruter_1.2-1_iphoneos-arm.deb
-Size: 9700
-MD5sum: 7fd443d1f0b9eb24a4010008aa686d8f
-SHA1: 3c82ea67ac091e6b086ca352306f1845041ad6e8
-SHA256: c9af70b9c6376d893dc84cf109dfacd137bc0d2440f14ea88b09a6d716576e27
+Filename: debs/dungx.wifibruter_1.4-1_iphoneos-arm.deb
+Size: 9692
+MD5sum: 973a3a0aae71a3d489686a4212a4103f
+SHA1: 93eecdec6b1e22a725433af2bbb3d171b4bc7696
+SHA256: 0b6479180a4d0ae2346e94fac92c896618ecc4d3392101aed1534bbd20f45440
 
 Package:  dungx.wifibruter
 Name:  WiFiBruter
@@ -20,9 +20,9 @@ Maintainer:  dungx
 Depends:  mobilesubstrate, preferenceloader
 Section:  Tweaks
 Description:  Automatically attempts WiFi passcodes from a wordlist on jailbroken iOS. Configurable from the Settings app. Primarily targets iOS 12 and iOS 15. For authorized security testing only.
-Filename: debs/dungx.wifibruter_1.2-1_iphoneos-arm64.deb
-Size: 9720
-MD5sum: 4d571976ed78df0530965540de8b12e0
-SHA1: e3221f2c0de35ea08ecf97617862c3b7cf844f22
-SHA256: 673ff67572c3fd66c0b189d02accfda8aa3ace767ffa321afdc4eeda1e5d2241
+Filename: debs/dungx.wifibruter_1.4-1_iphoneos-arm64.deb
+Size: 9696
+MD5sum: eb94617e3e76255b8e6cb66fcec3afe0
+SHA1: 8f3ccc9af11d01c9a2d29b6c07252c18c11d47d5
+SHA256: b5ba1ee5018951f274520864ac754e21fd5262decbe6f67b3752b05744c88374
 
