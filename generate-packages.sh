@@ -7,12 +7,20 @@ PACKAGES_FILE="$REPO_DIR/Packages"
 RELEASE_FILE="$REPO_DIR/Release"
 
 # Start fresh
-# Rename deb files to remove +debug suffix
+# Rename deb files to remove +debug suffix and -1+debug suffix
 for deb in "$DEBS_DIR"/*+debug*.deb; do
     [ -f "$deb" ] || continue
     newname="${deb/+debug/}"
-    mv "$deb" "$newname"
+    newname="${newname/-1-1_iphoneos/-1_iphoneos}"
+    if [ -f "$newname" ]; then
+        rm -f "$deb"
+    else
+        mv "$deb" "$newname" 2>/dev/null || true
+    fi
 done
+
+# Remove old debug versions that might conflict
+rm -f "$DEBS_DIR"/*+debug*.deb
 
 > "$PACKAGES_FILE"
 
@@ -20,7 +28,15 @@ for deb in "$DEBS_DIR"/*.deb; do
     [ -f "$deb" ] || continue
 
     debname=$(basename "$deb")
-    debname=${debname/+debug/}
+    debname=${debname/-1-1_iphoneos/-1_iphoneos}
+    
+    # Extract architecture from filename (e.g., _iphoneos-arm.deb or _iphoneos-arm64.deb)
+    if [[ "$debname" == *_iphoneos-arm64.deb ]]; then
+        arch="iphoneos-arm64"
+    else
+        arch="iphoneos-arm"
+    fi
+
     size=$(stat -c%s "$deb" 2>/dev/null || stat -f%z "$deb" 2>/dev/null)
     md5=$(md5sum "$deb" 2>/dev/null | cut -d' ' -f1 || md5 -q "$deb" 2>/dev/null)
     sha1=$(sha1sum "$deb" 2>/dev/null | cut -d' ' -f1 || shasum -a 1 "$deb" 2>/dev/null | cut -d' ' -f1)
@@ -36,8 +52,10 @@ for deb in "$DEBS_DIR"/*.deb; do
     package=$(get_field "Package")
     name=$(get_field "Name")
     version=$(get_field "Version")
+    # Strip debug suffixes from version: -1+debug → removed, then fix double -1
+    version=${version/-1+debug/}
+    version=${version/-1-1/-1}
     version=${version/+debug/}
-    arch="iphoneos-arm"
     maintainer=$(get_field "Maintainer")
     depends=$(get_field "Depends")
     section=$(get_field "Section")
@@ -100,7 +118,7 @@ Label: dungxrepo
 Suite: stable
 Version: 1.0
 Codename: ios
-Architectures: iphoneos-arm
+Architectures: iphoneos-arm iphoneos-arm64
 Components: main
 Description: Sileo/Cydia package repository for dungxrepo
 Date: $date
