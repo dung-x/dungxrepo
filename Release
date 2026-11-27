@@ -8,11 +8,11 @@ Components: main
 Description: Sileo/Cydia package repository for dungxrepo
 Date: Fri, 27 Nov 2026 14:32:00 UTC
 MD5Sum:
- cfed1e174b6a98f33faf537a2a9e3afb 1983 Packages
- 1111c1a61f940306a7f36b1dfb6c5b7f 758 Packages.gz
+ 5c68f6e8f7c7c5941f436970ad7830d6 1862 Packages
+ a3aeeeb6a0f0c2bcf9dd6f373c5fa287 690 Packages.gz
 SHA1:
- 60c803369c38822da5ea024cb9b8b2eab52edfba 1983 Packages
- 638499e16ba83593081703e43f2071c7654d324f 758 Packages.gz
+ 89444e1dff5b7ff023785bb11bf6483eca2cdd4d 1862 Packages
+ 04a1740508d7cf79d1ef3a19315a772b0543543e 690 Packages.gz
 SHA256:
- e5765c9470b3fe020c5dd5371c2241d560507f7aafeb042f688c6257c4a776c5 1983 Packages
- 59d0192328f24d9a7016f8c67e341a158f6ec7ce8ca9f86635707bb174729eb9 758 Packages.gz
+ 865913b3dfe65e50f893323a6fbf4bebaeec5c6c102789e12c54995d0ea88fa3 1862 Packages
+ 1c384140fe32913d7a63221b0fd3f421b085696a37f1263eeb7d6d4d42748d4f 690 Packages.gz

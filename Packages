@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-﻿Package: dungx.wifibruter
+Package: dungx.wifibruter
 Name: WiFiBruter
 Version: 1.5-1
 Architecture: iphoneos-arm
@@ -40,7 +39,3 @@ Size: 9772
 MD5sum: 260eb776218c02767f9b9dd0cbab853d
 SHA1: 8907843e5a6688cd84658ef8119f3f0c483cad01
 SHA256: 23d325a3573043a7dbfe52954ff940d302f91a1fd62d6f227bb57f997c5d50cf
-
-
-=======
->>>>>>> aab5ca94f12f2380f2c0b5ebdfe0868d46af3f4e
