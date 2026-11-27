@@ -1,10 +1,8 @@
 name: Sync Sileo Repo
 
 on:
-  workflow_run:
-    workflows: ["Build iOS Tweak"]
-    types:
-      - completed
+  release:
+    types: [published]
   workflow_dispatch:
   schedule:
     - cron: "0 0 * * *"
@@ -14,10 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    if: >
-      github.event.workflow_run.conclusion == 'success' ||
-      github.event_name == 'workflow_dispatch' ||
-      github.event_name == 'schedule'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,26 +22,11 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -y dpkg-dev gzip bzip2
 
-      - name: Get build artifact from main repo
-        id: get_artifact
+      - name: Download deb from release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          RUN_ID=$(gh api "repos/dung-x/Wifi-bruter/actions/runs?status=success&per_page=1" --jq '.workflow_runs[0].id')
-          echo "run_id=$RUN_ID" >> $GITHUB_OUTPUT
-          ARTIFACT_ID=$(gh api "repos/dung-x/Wifi-bruter/actions/runs/$RUN_ID/artifacts" --jq '.artifacts[] | select(.name == "wifibruter-deb") | .id')
-          if [ -n "$ARTIFACT_ID" ]; then
-            gh api -H "Accept: application/vnd.github+json" \
-              "repos/dung-x/Wifi-bruter/actions/artifacts/$ARTIFACT_ID/zip" \
-              > artifact.zip
-            unzip -o artifact.zip
-            rm -f artifact.zip
-          fi
-
-      - name: Flatten debs into debs/
-        run: |
-          mkdir -p debs
-          find . -name "*.deb" -not -path "./debs/*" -exec mv {} debs/ \; 2>/dev/null || true
+          gh release download -R dung-x/Wifi-bruter --pattern '*.deb' --dir debs
 
       - name: Generate Packages index
         run: |
@@ -59,5 +38,5 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add Packages Packages.gz Packages.bz2 Release debs/
-          git commit -m "Sync packages from latest build (run ${{ steps.get_artifact.outputs.run_id }})" || echo "No changes to commit"
+          git commit -m "Sync packages from latest release" || echo "No changes to commit"
           git push
