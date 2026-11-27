@@ -7,12 +7,20 @@ PACKAGES_FILE="$REPO_DIR/Packages"
 RELEASE_FILE="$REPO_DIR/Release"
 
 # Start fresh
+# Rename deb files to remove +debug suffix
+for deb in "$DEBS_DIR"/*+debug*.deb; do
+    [ -f "$deb" ] || continue
+    newname="${deb/+debug/}"
+    mv "$deb" "$newname"
+done
+
 > "$PACKAGES_FILE"
 
 for deb in "$DEBS_DIR"/*.deb; do
     [ -f "$deb" ] || continue
 
     debname=$(basename "$deb")
+    debname=${debname/+debug/}
     size=$(stat -c%s "$deb" 2>/dev/null || stat -f%z "$deb" 2>/dev/null)
     md5=$(md5sum "$deb" 2>/dev/null | cut -d' ' -f1 || md5 -q "$deb" 2>/dev/null)
     sha1=$(sha1sum "$deb" 2>/dev/null | cut -d' ' -f1 || shasum -a 1 "$deb" 2>/dev/null | cut -d' ' -f1)
@@ -28,6 +36,7 @@ for deb in "$DEBS_DIR"/*.deb; do
     package=$(get_field "Package")
     name=$(get_field "Name")
     version=$(get_field "Version")
+    version=${version/+debug/}
     arch="iphoneos-arm"
     maintainer=$(get_field "Maintainer")
     depends=$(get_field "Depends")
