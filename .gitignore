@@ -1,6 +1,11 @@
-*.deb
-!debs/*.deb
-!.gitignore
-.debs/
+# Build artifacts
+*.dylib
+.theos/
+*.log
+.build/
+
+# macOS
 .DS_Store
+
+# Editor
 .vscode/
