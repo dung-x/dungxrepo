@@ -7,8 +7,8 @@ Depends:  mobilesubstrate, preferenceloader
 Section:  Tweaks
 Description:  Automatically attempts WiFi passcodes from a wordlist on jailbroken iOS. Configurable from the Settings app. Primarily targets iOS 12 and iOS 15. For authorized security testing only.
 Filename: debs/dungx.wifibruter_1.0-1-1+debug_iphoneos-arm.deb
-Size: 11440
-MD5sum: e0dd5dd8084f026f478578f21f8f5784
-SHA1: 1a008f140a2fce57684b64d70d4f3a61d08d2074
-SHA256: 210d9a906e9276bd6b0d13627c08b842450646e33ad3f51f9feb60e429317ea2
+Size: 11444
+MD5sum: 23524a306879c4e2cdf1e7fb908510c0
+SHA1: f88622e7ee05119c4f55b79c2761f13fbb2de9ff
+SHA256: 0e168d9c0c942eae35dcbbf3a80224e238a59f98b826a7c243e3954efb997731
 
