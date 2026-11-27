@@ -6,16 +6,16 @@ Codename: ios
 Architectures: iphoneos-arm64
 Components: main
 Description: Sileo/Cydia package repository for dungxrepo
-Date: Fri, 27 Nov 2026 13:55:12 UTC
+Date: Fri, 27 Nov 2026 13:57:02 UTC
 MD5Sum:
  d41d8cd98f00b204e9800998ecf8427e 0 Packages
- f8571d4ef9dc87bdfece206f5cf79241 29 Packages.gz
+ ec84f78184b7c8a9a7996f71ebb0384a 29 Packages.gz
  4059d198768f9f8dc9372dc1c54bc3c3 14 Packages.bz2
 SHA1:
  da39a3ee5e6b4b0d3255bfef95601890afd80709 0 Packages
- 6abfd14c009c7282bf6eb52f1c58896c9f3b545c 29 Packages.gz
+ 0d29ea6ae8f486cf99cc6a4edcf3045dc2b5a4db 29 Packages.gz
  64a543afbb5f4bf728636bdcbbe7a2ed0804adc2 14 Packages.bz2
 SHA256:
  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 Packages
- 2c59f8ab6d5a401c020aba9a8ee87b5203758426c3e41d63573b9f5e6e240489 29 Packages.gz
+ a0ec9df8d18a0b2a09bc45754bd818c4f6656a4b13b24d537f12f85297ef1293 29 Packages.gz
  d3dda84eb03b9738d118eb2be78e246106900493c0ae07819ad60815134a8058 14 Packages.bz2
