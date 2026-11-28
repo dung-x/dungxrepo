@@ -3,16 +3,19 @@ Label: dungxrepo
 Suite: stable
 Version: 1.0
 Codename: ios
-Architectures: iphoneos-arm iphoneos-arm64
+Architectures: iphoneos-arm64
 Components: main
 Description: Sileo/Cydia package repository for dungxrepo
-Date: Fri, 27 Nov 2026 15:08:00 UTC
+Date: Sat, 28 Nov 2026 06:10:37 UTC
 MD5Sum:
- 2325b98cd6240a120294e2a8d2762b87 1922 Packages
- d0fd4dba0d1f08e5c3fcd99e1b1f895 705 Packages.gz
+ d41d8cd98f00b204e9800998ecf8427e 0 Packages
+ 4bc47616493af47eac742b03553a1932 29 Packages.gz
+ 4059d198768f9f8dc9372dc1c54bc3c3 14 Packages.bz2
 SHA1:
- 96de79b8a1a8c95ffd963ddb2b0ed1163d6cadb0 1922 Packages
- 2499411ca6883d2a5432e2fb422a8ee4eb870bba 705 Packages.gz
+ da39a3ee5e6b4b0d3255bfef95601890afd80709 0 Packages
+ e20362ee5489b59974c55b6ec10e13415ae82aea 29 Packages.gz
+ 64a543afbb5f4bf728636bdcbbe7a2ed0804adc2 14 Packages.bz2
 SHA256:
- 1236eed9d6f8acc5de7a15fa2af4d4f2c8b11db6d06d910ed6afe39d4ff00e3d 1922 Packages
- ec9209293b5e432063be5409296e43529aeb31a475815f22ec76482ccffd13e1 705 Packages.gz
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 Packages
+ 78bee75b04af1bb31ce28bb6c73a00b3881430373f6fdb7462d3301306ff62b0 29 Packages.gz
+ d3dda84eb03b9738d118eb2be78e246106900493c0ae07819ad60815134a8058 14 Packages.bz2
